@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/utils.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/blogpost.css">
+    <title>Hi, I'm Notnue</title>
+</head>
+<body>
+   <!----> <nav class="navigation max-width-1 m-auto">
+        <div class="nav-left">
+            <a href="/">
+                <span><img src="img/logo.png" width="94px" alt=""></span>
+            </a>
+            <h1 class="font1">Virtual Machine - Headless Walk-through </h1>
+            
+
+    </nav>
+    <div class="max-width-1 m-auto">
+        <hr>
+    </div>
+    <div class="post-img"><br><br>
+        <img src="img/nmap-encrpt.png" alt="">
+    </div>
+    <div class="m-auto blog-post-content max-width-2 m-auto my-2">
+        
+                 <p class="font1">This VM Image is beginner friendly machine. The object of the game is to acquire root access via any means possible (except actually hacking the VM server or player). There are more ways then one to successfully complete the challenges.<br>
+
+            <b>Download link 1:</b><i> https://www.dropbox.com/sh/t04oh0gxags8k3u/AABCTCFDQ1fQpZkPrv7K2Pffa?dl=0 </i>
+            
+            <b>Download Link 2:</b><i> https://drive.google.com/file/d/1Bj1Tbk1PHTFFCCFN1mMDjaJ1WprVXyyG/view?usp=sharing</i></p> <br>
+            <b>Official Walk-through for the machine:</b>
+         <p class="font1">Start enumerating machine by simple nmap scan considering all ports with -p- as a switch</p>
+            <b>nmap -p- -sCV — open -o nmap.txt $IP </b>
+            <img src="img/nmap-headless.png" alt="article"><br>
+
+         <p class="font1">2. FTP to the subsequent port found, enumerating the every directories you found and by downloading all the files at the same time we get:</p>
+         <img src="img/nmap-ftp.png" alt="article">
+         <p class="font1">3. You’ll find some images and encrypted text there..</p>
+            <img src="img/nmap-headless.png" alt="article">
+         
+         <p class="font1">3. Are these images are actually images??? </p>
+            <img src="img/nmap-headless.png" alt="article">
+         
+         <p class="font1">(32 OR 64 OR ROT???) again?? (maybe?)
+
+            4. Remote login??? (Is it sec#red shell?)</p>
+            <img src="img/nmap-ssh.png" alt="article">  
+            <p class="font1">   5. Clearly by seeing the permissions given to .home.sh file, we can own the machine by manipulating the script as shown:</p>
+                <img src="img/nmap-script.png" alt="article">
+            <p class="font1">And by running the script as shown WE are ROOT!!!, the flag is waiting for you:</p>
+                <img src="img/nmap-flag.png" alt="article"> 
+    </div>
+
+    <div class="max-width-1 m-auto"><hr></div>
+    <div class="home-articles max-width-1 m-auto font2">
+        <h2>People who read this also read</h2>
+        <div class="row">
+
+       
+        <div class="home-article more-post">
+            <div class="home-article-img">
+                <img src="img/rbashhh.png" alt="article">
+            </div>
+            <div class="home-article-content font1 center">
+                <a href="/rbbash.html"><h3>Breaking out of a Restricted shell Why do I even care? You have to!! My end ...</h3></a>
+                
+                
+            </div>
+        </div>
+        <div class="home-article more-post">
+            <div class="home-article-img">
+                <img src="img/goldeneye-hack7.png" alt="article">
+            </div>
+            <div class="home-article-content font1 center">
+                <a href="/golden.html"><h3>They say this is the OSCP type practice vulnerable machine...</h3></a>
+                
+                
+            </div>
+        </div>
+        <div class="home-article more-post">
+            <div class="home-article-img">
+                <img src="img/linuxprev.png" alt="article">
+            </div>
+            <div class="home-article-content font1 center">
+                <a href="/linuxprev.html"><h3>Privilege escalation is the act of exploiting a bug, design flaw or configuration oversight ...</h3></a>
+                
+                
+            </div>
+        </div>
+        
+    </div>
+</div>
+</body>
+</html>
