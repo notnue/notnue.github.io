@@ -2,6 +2,9 @@
 .navbarScroll.navbarDark {
     background-color: black;
 }
+img {
+  border-radius: 50%;
+}
 
 /* hero background image */
 .bgimage {
