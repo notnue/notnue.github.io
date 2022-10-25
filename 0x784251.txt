@@ -1,0 +1,27 @@
+One game.
+I'll even let you have the first move.
+A game to end all games between us.
+We play, and the winner takes all.
+
+<form action="#" method="" name="form_name" id="form_id" class="form_class" >
+
+<input type="text" name="key" id="key" placeholder="chat" />
+
+<button name="submit_id" id="btn_id" value="x" onclick="Ox2112()" type="button">Submit</button>
+
+<br><br>
+
+
+<script language="javascript">
+
+function Ox2112() {
+	var chat = "Winner takes all of what?";
+
+	var input = document.getElementById("key").value;
+	 
+	if (input == chat) {
+		alert(decodeURI('/%75%73'));
+	} 
+}
+
+</script>
