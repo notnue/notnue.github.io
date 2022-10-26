@@ -4,4 +4,4 @@ Disallow: /
 
 ## Add this to index everything for every use agent 
 User-agent: *
-Disallow: golden.html
+Disallow: /0x784251
