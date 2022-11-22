@@ -6,6 +6,6 @@ setInterval(()=>{
     counter.innerText = count;
     count++
     
-    if(count > 3) location.replace('https://www.google.com/')
+    if(count > 3) location.replace('https://phaseshift.in/eventPage/CLDHKD')
     
 },1000)
