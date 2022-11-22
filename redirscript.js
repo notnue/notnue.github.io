@@ -1,9 +1,9 @@
-let Counter = document.querySelector('h1');
+let counter = document.querySelector('h1');
 let count = 1;
 
 setInterval(()=>{
 
-    Counter.innerText = count;
+    counter.innerText = count;
     count++
     
     if(count > 3) location.replace('https://bing.com')
