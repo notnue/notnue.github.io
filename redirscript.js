@@ -1,4 +1,4 @@
-let Wait = document.querySelector('h1');
+let holdOn = document.querySelector('h1');
 let count = 1;
 
 setInterval(()=>{
