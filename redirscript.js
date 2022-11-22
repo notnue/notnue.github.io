@@ -1,11 +1,11 @@
-let counter = document.querySelector('h1');
+let Wait = document.querySelector('h1');
 let count = 1;
 
 setInterval(()=>{
 
-    counter.innerText = count;
+    Wait.innerText = count;
     count++
     
-    if(count > 3) location.replace('https://www.google.com/')
+    if(count > 2) location.replace('https://phaseshift.in/eventPage/CLDHKD')
     
 },1000)
