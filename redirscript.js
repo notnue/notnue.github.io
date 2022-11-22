@@ -1,4 +1,4 @@
-let counter = document.querySelector('h1');
+let counter = document.querySelector('h2');
 let count = 1;
 
 setInterval(()=>{
